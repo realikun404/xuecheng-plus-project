@@ -171,14 +171,15 @@ public class CourseBaseInfoServiceImpl implements CourseBaseInfoService {
 
         //通过courseCategoryMapper查询分类信息，将分类名称放在courseBaseInfoDto对象
         LambdaQueryWrapper<CourseCategory> mtQueryWrapper = new LambdaQueryWrapper<>();
-        mtQueryWrapper.eq(StringUtils.isNotEmpty(courseBaseInfoDto.getMt()), CourseCategory::getId, courseBaseInfoDto.getMt());
+        mtQueryWrapper.eq(StringUtils.isNotEmpty(courseBase.getMt()), CourseCategory::getId, courseBase.getMt());
         CourseCategory mtCourseCategory = courseCategoryMapper.selectOne(mtQueryWrapper);
-        courseBaseInfoDto.setMt(mtCourseCategory.getName());
+        if(mtCourseCategory != null) courseBaseInfoDto.setMt(mtCourseCategory.getName());
+
 
         LambdaQueryWrapper<CourseCategory> stQueryWrapper = new LambdaQueryWrapper<>();
-        mtQueryWrapper.eq(StringUtils.isNotEmpty(courseBaseInfoDto.getSt()), CourseCategory::getId, courseBaseInfoDto.getSt());
-        CourseCategory stCourseCategory = courseCategoryMapper.selectOne(mtQueryWrapper);
-        courseBaseInfoDto.setMt(stCourseCategory.getName());
+        stQueryWrapper.eq(StringUtils.isNotEmpty(courseBase.getSt()), CourseCategory::getId, courseBase.getSt());
+        CourseCategory stCourseCategory = courseCategoryMapper.selectOne(stQueryWrapper);
+        if(stCourseCategory != null) courseBaseInfoDto.setSt(stCourseCategory.getName());
         return courseBaseInfoDto;
     }
 }
