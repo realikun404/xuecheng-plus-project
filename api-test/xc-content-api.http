@@ -29,6 +29,6 @@ Content-Type: application/json
   "teachmode": "200002",
   "users": "初级人员",
   "tags": "tagstagstags",
-  "grade": "204001",
+  "grade": "",
   "description": "java网络编程高级java网络编程高级java网络编程高级"
 }
